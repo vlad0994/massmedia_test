@@ -1,0 +1,9 @@
+.center-content
+  .page-header
+    %h1 New comment
+
+  = form_with model: [@post, @comment] do |f|
+    %p
+      = f.text_area :content, :class => "form-control", :type =>"text", :placeholder => "Comment"
+    %p
+      = f.submit

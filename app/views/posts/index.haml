@@ -1,0 +1,19 @@
+.page-header
+  %h1 Posts
+.right
+  = link_to 'New post',  new_post_path, :class => "btn btn-success"
+%table
+  %tr
+    %th.padding_table Name
+    %th.padding_table Category
+    %th.padding_table Date
+  - @posts.each do |post|
+    %tr
+      %td.padding_table= post.name
+      %td.padding_table= post.category.name
+      %td.padding_table= post.created_at
+      %td.padding_table= link_to 'Show', post_path(post)
+      - if current_user == post.user
+        %td.padding_table= link_to 'Edit', edit_post_path(post)
+        %td.padding_table= link_to 'Delete', post_path(post), method: :delete, data: {confirm: "Are you sure?"}
+

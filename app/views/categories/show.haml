@@ -1,0 +1,20 @@
+.page-header
+  %h1
+    = @category.name
+%p
+  = @category.description
+.page-header
+  %h1 Posts
+- @category.posts.each do |post|
+  %p
+    = link_to "#{post.name}", post_path(post.id)
+
+= render partial: 'comments/form_category'
+
+#comment-list
+  - if @comments.present?
+    - @comments.each do |comment|
+      = render partial: 'comments/comment', locals: { comment: comment}
+  - else
+    .center-content
+      %h1 No Comments

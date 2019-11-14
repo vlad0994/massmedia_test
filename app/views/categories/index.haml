@@ -1,0 +1,17 @@
+.page-header
+  %h1 Categories
+.right
+  = link_to 'New category',  new_category_path, :class => "btn btn-success"
+%table
+  %tr
+    %th.padding_table Name
+    %th.padding_table Description
+  - @categories.each do |category|
+    %tr
+      %td.padding_table= category.name
+      %td.padding_table= category.description
+      %td.padding_table= link_to 'Show', category_path(category)
+      - if current_user == category.user
+        %td.padding_table= link_to 'Edit', edit_category_path(category)
+        %td.padding_table= link_to 'Delete', category_path(category), method: :delete, data: {confirm: "Are you sure?"}
+

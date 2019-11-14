@@ -1,0 +1,18 @@
+.page-header
+  %h1
+    = @post.name
+%p
+  = @post.content
+- if @post.file.present?
+  %p
+    = image_tag "#{@post.file.url}"
+
+= render partial: 'comments/form_post'
+
+#comment-list
+  - if @comments.present?
+    - @comments.each do |comment|
+      = render partial: 'comments/comment', locals: { comment: comment}
+  - else
+    .center-content
+      %h1 No Comments

@@ -1,0 +1,17 @@
+- if @post.errors.any?
+  %h2 The following errors prevented the article from saving:
+  %ul
+    - @post.errors.full_messages.each do |msg|
+      %li= msg
+
+= form_for @post do |f|
+  %p
+    = f.collection_select :category_id, Category.all, :id, :name, {:prompt => 'Select category'}, {class: "form-control"}
+  %p
+    = f.text_field :name, :class => "form-control", :type =>"text", :placeholder => "Name"
+  %p
+    = f.text_area :content, :class => "form-control", :type =>"text", :placeholder => "Post"
+  %p
+    = f.file_field :file, :class => "form-control"
+  %p
+    = f.submit
